@@ -66,6 +66,7 @@ public class Exercise_Array {
 	}
 
 	public void exercise5() {
+
 		// 사용자에게 주민번호를 입력 받은 후
 		// 성별 자리 이후부터 *로 저장되어 출력되도록 프로그램을 작성하시오
 		// 210618-1124600 -> 210618-1******
@@ -94,5 +95,28 @@ public class Exercise_Array {
 			System.out.print(origin[i]);
 		}
 	}
+
+	public void exercise6( ) {
+		int[] nums = {1, 2, 3, 4, 5};
+//		for(int i = 0; i < 5; i++) {
+//			System.out.print(nums[i] + " ");
+//		}
+		// forEach문1
+		for(int num : nums) {
+			System.out.print(num + " ");
+		}
+	}
+
+    public void exercise7( ) {
+    	String[] fruits = { "딸기", "복숭아", "포도", "체리", "망고" };
+//    	for(int i = 0; i< fruits.length; i++) {
+//    		System.out.print(fruits[i] + " ");
+//    	}
+    	for(String fruit : fruits) {
+    		System.out.print(fruit + " ");
+    	}
+    }
+    
+    
 }
 

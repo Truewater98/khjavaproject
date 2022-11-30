@@ -1,6 +1,6 @@
 package com.kh.day05.run;
 
-import java.util.Arrays;
+
 
 import com.kh.day05.exercise.Exercise_Array;
 import com.kh.day05.exercise.Exercise_For;
@@ -17,7 +17,8 @@ public class Run {
 		//exArray.exercise2();
 		//exArray.exercise3();
 		//exArray.exercise4();
-		exArray.exercise5();
+		//exArray.exercise5();
+		exArray.exercise6();
 	}
 
 }
