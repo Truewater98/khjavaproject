@@ -35,14 +35,31 @@ public class BaseballClient {
 				dos.writeUTF(input);
 				String info = dis.readUTF();
 				System.out.println(info);
-				if(info.contains("게임종료")) {
+		    //	if(info.contains("게임종료")) {
+			//		break;
+			//	}
+				if(info.startsWith("3")) {
+					System.out.println("축하합니다. 아웃입니다!");
 					break;
 				}
 			}
-		} catch (UnknownHostException e) {
+		} 
+//			catch (UnknownHostException e) {
+//			e.printStackTrace();
+//		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} finally {
+			try {
+				dos.close();
+				dis.close();
+				is.close();
+				os.close();
+				socket.close();
+				sc.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
