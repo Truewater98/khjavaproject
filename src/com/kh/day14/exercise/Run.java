@@ -16,6 +16,7 @@ public class Run {
 			case 4 : io.load();
 				break;
 			case 0 : break EXIT;
+			default : System.out.println("1 ~ 4 사이의 숫자를 입력해주세요.");
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package com.kh.day14.exercise;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,6 +12,7 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Exercise_IOStream {
 //		1. 정보입력
@@ -30,11 +32,12 @@ public class Exercise_IOStream {
 //		3 선택하여 저장 후 파일을 열어보면 일용자/33/서울시 종로구 단, 파일 이름은 이름으로 한다
 //		4. 선택후 파일의 제목을 입력하여 로드한 후에
 //		2. 선택하면 정보가 출력됨
+	Person person;
+	public Exercise_IOStream() {
+		person = new Person();
+	}	
 	Writer write = null;
 	Reader read = null;
-    private	String name = "";
-    private String address = "";
-    private int age = 0;
 	private char[] cbuf = new char[100];
     private String readInfo = "";
     private String[] infos;
@@ -42,16 +45,21 @@ public class Exercise_IOStream {
     Scanner sc = new Scanner(System.in);
 public void save() {
 	try {
-		write = new FileWriter("src/exercise/" + name + ".txt");
-		String writ = name + "/" +  age + "/" + address;
+		write = new FileWriter("src/exercise/" + person.getName() + ".txt");
+		String writ = person.getName() + "/" + person.getAge() + "/" + person.getAddress();
 		write.write(writ);
 		write.flush();
-		System.out.println("정보를 " + name + "파일의 저장했습니다.");
+		System.out.println("정보를 " + person.getName() + "파일의 저장했습니다.");
 	}catch (IOException e) {
 		e.printStackTrace();
 	}
 }
 public void load() {
+//	Reader reader;
+//	BufferedReader bfReader;
+//	String result = "";
+//	System.out.print("불러올 파일을 입력해주세요 : ");
+//	String filename = sc.next();
 	try {
 		int length = 0;
 		System.out.print("파일의 제목을 입력 : ");
@@ -59,41 +67,47 @@ public void load() {
 		fileName = sc.nextLine();
 		read = new FileReader("src/exercise/" + fileName + ".txt");
 		length = read.read(cbuf);
-		readInfo = readInfo.valueOf(cbuf, 0, length);
+		readInfo = String.valueOf(cbuf, 0, length);
 		infos = readInfo.split("/");
-		name = infos[0];
-		age = Integer.parseInt(infos[1]);
-		System.out.println(infos[2]);
-		address = infos[2];
-		System.out.println(name + "파일의 정보를 불러왔습니다.");
+		person.setName(infos[0]);
+		person.setAge(Integer.parseInt(infos[1]));
+		person.setAddress(infos[2]);
+//		reader = new FileReader("src/exercise/" + filename + ".txt");
+//		bfReader = new BufferedReader(reader);
+//		result = bfReader.readLine();	
+//		StringTokenizer st = new StringTokenizer(result,"/");
+//		name = st.nextToken();
+//		age = Integer.parseInt(st.nextToken());
+//		address = st.nextToken();
+		System.out.println(person.getName() + "파일의 정보를 불러왔습니다.");
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
 }
 public void insert() {
 	System.out.print("이름 입력 : ");
-	name = sc.next();
+	person.setName(sc.next());
 	System.out.print("나이 입력 : ");
-	age = sc.nextInt();
+	person.setAge(sc.nextInt());
 	sc.nextLine();
 	System.out.print("주소 입력 : ");
-	address = sc.nextLine();
+	person.setAddress(sc.nextLine());
 	
 }
 public int menuPrint() {
 	System.out.println("1. 정보입력");
 	System.out.println("2. 정보 출력");
-	System.out.println("3. 정보 저장(save)");
-	System.out.println("4. 정보불러오기(load)");
-	System.out.println("0. 종료");
+	System.out.println("3. 정보 저장(save 후 입력받은 이름이 파일명)");
+	System.out.println("4. 정보불러오기(load후 2번으로 출력)");
+	System.out.println("0. 종료하기");
 	System.out.print("메뉴입력 : ");
 	return sc.nextInt();
 }
 
 public void print() {
-	System.out.println("이름 : " + name);
-	System.out.println("나이 : " + age);
-	System.out.println("주소 : " + address);
+	System.out.println("이름 : " + person.getName());
+	System.out.println("나이 : " + person.getAge());
+	System.out.println("주소 : " + person.getAddress());
 }
 
 }
